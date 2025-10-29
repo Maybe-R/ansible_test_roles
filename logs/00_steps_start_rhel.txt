@@ -1,0 +1,4 @@
+$ docker run --privileged=True -v $(pwd):/opt/playbook/-w /opt/playbook/ -it redhat_ansible:latest /bin/bash
+pip install -r test-requirements.txt; pip install --upgrade --user urllib3; pip install --upgrade --user six
+podman login registry.redhat.io
+vi /etc/containers/containers.conf

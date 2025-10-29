@@ -1,0 +1,11 @@
+---
+- name: restart filebeat
+  become: true
+  service:
+    name: filebeat
+    state: restarted
+- name: nginx systemd
+  systemd:
+    name: nginx
+    enabled: yes
+    state: restarted

@@ -1,0 +1,32 @@
+---
+- name: Configure log4j2
+  become: true
+  template:
+    src: log4j2.properties.j2
+    mode: 0755
+    dest: /etc/logstash/log4j2.properties
+- name: Configure jvm
+  become: true
+  template:
+    src: jvm.options.j2
+    mode: 0755
+    dest: /etc/logstash/jvm.options
+- name: Configure Logstash
+  become: true
+  template:
+    src: logstash.conf.j2
+    mode: 0755
+    dest: /etc/logstash/logstash.conf
+- name: Configure with yml Logstash
+  become: true
+  template:
+    src: logstash.yml.j2
+    mode: 0755
+    dest: /etc/logstash/logstash.yml
+  notify: restart Logstash
+#- name: Run logstash
+#  become: true
+#  command:
+#    cmd: /usr/share/logstash/bin/logstash -f logstash.conf
+#    chdir: /etc/logstash
+#  register: logstash_modules

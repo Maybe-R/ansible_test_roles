@@ -1,0 +1,16 @@
+---
+- name: Configure Kibana
+  become: true
+  template:
+    src: kibana.yml.j2
+    dest: /etc/kibana/kibana.yml
+    mode: 0644
+  notify: restart Kibana Centos
+  when: ansible_facts.pkg_mgr == "yum"
+- name: Configure Kibana
+  template:
+    src: kibana.yml.j2
+    dest: /etc/kibana/kibana.yml
+    mode: 0644
+  notify: restart Kibana Deb
+  when: ansible_facts.pkg_mgr == "apt"

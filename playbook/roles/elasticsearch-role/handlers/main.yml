@@ -1,0 +1,12 @@
+---
+- name: restart Elasticsearch
+  become: true
+  service:
+    name: elasticsearch
+    state: restarted
+  when: ansible_facts.pkg_mgr == "yum"
+- name: restart Elasticsearch Deb
+  service:
+    name: elasticsearch
+    state: restarted
+  when: ansible_facts.pkg_mgr == "apt"

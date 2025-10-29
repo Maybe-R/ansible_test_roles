@@ -1,0 +1,12 @@
+---
+- name: restart Kibana Centos
+  become: true
+  service:
+    name: kibana
+    state: restarted
+  when: ansible_facts.pkg_mgr == "yum"
+- name: restart Kibana Deb
+  service:
+    name: kibana
+    state: restarted
+  when: ansible_facts.pkg_mgr == "apt"

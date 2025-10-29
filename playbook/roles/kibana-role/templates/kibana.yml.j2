@@ -1,0 +1,7 @@
+server.host: "0.0.0.0"
+{% if ansible_distribution == "CentOS" %}
+elasticsearch.hosts: ["http://localhost:5003"]
+{% else %}
+elasticsearch.hosts: ["http://localhost:5002"]
+{% endif %}
+kibana.index: ".kibana"

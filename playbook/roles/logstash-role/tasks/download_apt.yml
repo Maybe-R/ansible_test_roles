@@ -1,0 +1,14 @@
+---
+- name: "Download Logstash's deb"
+  get_url:
+    url: "https://artifacts.elastic.co/downloads/logstash/logstash-{{ logstash_version }}-amd64.deb"
+    dest: "files/logstash-{{ logstash_version }}-amd64.deb"
+  delegate_to: localhost
+  register: download_logstash
+  until: download_logstash is succeeded
+  when: logstash_install_type == 'remote'
+- name: Copy Logstash to manage host
+  copy:
+    src: "files/logstash-{{ logstash_version }}-amd64.deb"
+    mode: 0755
+    dest: "/tmp/logstash-{{ logstash_version }}-amd64.deb"

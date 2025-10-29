@@ -1,0 +1,143 @@
+
+PLAY [Work with elasticsearch-role] ********************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [el-centos]
+ok: [el-deb]
+
+TASK [elastic : Fail if unsupported system detected] ***************************
+skipping: [el-centos]
+skipping: [el-deb]
+
+TASK [elastic : include_tasks] *************************************************
+included: /home/lerekler/Learning/gitProjects/ansible_03/ansible_role/roles/elastic/tasks/download_yum.yml for el-centos
+included: /home/lerekler/Learning/gitProjects/ansible_03/ansible_role/roles/elastic/tasks/download_apt.yml for el-deb
+
+TASK [elastic : Download Elasticsearch's rpm] **********************************
+ok: [el-centos -> localhost]
+
+TASK [elastic : Copy Elasticsearch to managed node] ****************************
+ok: [el-centos]
+
+TASK [elastic : Download Elasticsearch's deb] **********************************
+ok: [el-deb -> localhost]
+
+TASK [elastic : Copy Elasticsearch to manage host] *****************************
+ok: [el-deb]
+
+TASK [elastic : include_tasks] *************************************************
+included: /home/lerekler/Learning/gitProjects/ansible_03/ansible_role/roles/elastic/tasks/install_yum.yml for el-centos
+included: /home/lerekler/Learning/gitProjects/ansible_03/ansible_role/roles/elastic/tasks/install_apt.yml for el-deb
+
+TASK [elastic : Install Elasticsearch] *****************************************
+ok: [el-centos]
+
+TASK [elastic : Install Elasticsearch] *****************************************
+ok: [el-deb]
+
+TASK [elastic : Configure Elasticsearch] ***************************************
+ok: [el-deb]
+ok: [el-centos]
+
+PLAY [Work with kibana-role] ***************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [k-centos]
+ok: [k-deb]
+
+TASK [kibana : Fail if unsupported system detected] ****************************
+skipping: [k-centos]
+skipping: [k-deb]
+
+TASK [kibana : include_tasks] **************************************************
+included: /home/lerekler/Learning/gitProjects/ansible_03/ansible_role/roles/kibana/tasks/download_yum.yml for k-centos
+included: /home/lerekler/Learning/gitProjects/ansible_03/ansible_role/roles/kibana/tasks/download_apt.yml for k-deb
+
+TASK [kibana : Download Kibana's rpm] ******************************************
+ok: [k-centos -> localhost]
+
+TASK [kibana : Copy Kibana to managed node] ************************************
+ok: [k-centos]
+
+TASK [kibana : Download Kibana's deb] ******************************************
+ok: [k-deb -> localhost]
+
+TASK [kibana : Copy kibana to manage host] *************************************
+ok: [k-deb]
+
+TASK [kibana : include_tasks] **************************************************
+included: /home/lerekler/Learning/gitProjects/ansible_03/ansible_role/roles/kibana/tasks/install_yum.yml for k-centos
+included: /home/lerekler/Learning/gitProjects/ansible_03/ansible_role/roles/kibana/tasks/install_apt.yml for k-deb
+
+TASK [kibana : Install Kibana] *************************************************
+ok: [k-centos]
+
+TASK [kibana : Install Kibana] *************************************************
+ok: [k-deb]
+
+TASK [kibana : Configure Kibana] ***********************************************
+ok: [k-deb]
+ok: [k-centos]
+
+PLAY [Work with filebeat-role] *************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [f-centos]
+ok: [f-deb]
+
+TASK [filebeat : Fail if unsupported system detected] **************************
+skipping: [f-centos]
+skipping: [f-deb]
+
+TASK [filebeat : include_tasks] ************************************************
+included: /home/lerekler/Learning/gitProjects/ansible_03/ansible_role/roles/filebeat/tasks/download_yum.yml for f-centos
+included: /home/lerekler/Learning/gitProjects/ansible_03/ansible_role/roles/filebeat/tasks/download_apt.yml for f-deb
+
+TASK [filebeat : Download Kibana's rpm] ****************************************
+ok: [f-centos -> localhost]
+
+TASK [filebeat : Copy Filebeat to managed node] ********************************
+ok: [f-centos]
+
+TASK [filebeat : Download Filebeat's deb] **************************************
+ok: [f-deb -> localhost]
+
+TASK [filebeat : Copy Filebeat to manage host] *********************************
+ok: [f-deb]
+
+TASK [filebeat : include_tasks] ************************************************
+included: /home/lerekler/Learning/gitProjects/ansible_03/ansible_role/roles/filebeat/tasks/install_yum.yml for f-centos
+included: /home/lerekler/Learning/gitProjects/ansible_03/ansible_role/roles/filebeat/tasks/install_apt.yml for f-deb
+
+TASK [filebeat : Install Filebeat] *********************************************
+ok: [f-centos]
+
+TASK [filebeat : Install Filebeat] *********************************************
+ok: [f-deb]
+
+TASK [filebeat : Configure Filebeat] *******************************************
+ok: [f-centos]
+ok: [f-deb]
+
+TASK [filebeat : Set filebeat systemwork] **************************************
+ok: [f-deb]
+ok: [f-centos]
+
+TASK [filebeat : Load Kibana dashboard] ****************************************
+FAILED - RETRYING: Load Kibana dashboard (3 retries left).
+FAILED - RETRYING: Load Kibana dashboard (3 retries left).
+FAILED - RETRYING: Load Kibana dashboard (2 retries left).
+FAILED - RETRYING: Load Kibana dashboard (2 retries left).
+FAILED - RETRYING: Load Kibana dashboard (1 retries left).
+FAILED - RETRYING: Load Kibana dashboard (1 retries left).
+fatal: [f-deb]: FAILED! => {"attempts": 3, "changed": false, "cmd": ["filebeat", "setup"], "delta": "0:00:01.294623", "end": "2021-12-11 18:19:14.123331", "msg": "non-zero return code", "rc": 1, "start": "2021-12-11 18:19:12.828708", "stderr": "Exiting: error connecting to Kibana: fail to get the Kibana version: HTTP GET request to http://10.129.0.37:5601/api/status fails: fail to execute the HTTP GET request: Get \"http://10.129.0.37:5601/api/status\": dial tcp 10.129.0.37:5601: connect: connection refused. Response: .", "stderr_lines": ["Exiting: error connecting to Kibana: fail to get the Kibana version: HTTP GET request to http://10.129.0.37:5601/api/status fails: fail to execute the HTTP GET request: Get \"http://10.129.0.37:5601/api/status\": dial tcp 10.129.0.37:5601: connect: connection refused. Response: ."], "stdout": "Overwriting ILM policy is disabled. Set `setup.ilm.overwrite: true` for enabling.\n\nIndex setup finished.\nLoading dashboards (Kibana must be running and reachable)", "stdout_lines": ["Overwriting ILM policy is disabled. Set `setup.ilm.overwrite: true` for enabling.", "", "Index setup finished.", "Loading dashboards (Kibana must be running and reachable)"]}
+fatal: [f-centos]: FAILED! => {"attempts": 3, "changed": false, "cmd": ["filebeat", "setup"], "delta": "0:00:01.394564", "end": "2021-12-11 18:19:14.486378", "msg": "non-zero return code", "rc": 1, "start": "2021-12-11 18:19:13.091814", "stderr": "Exiting: error connecting to Kibana: fail to get the Kibana version: HTTP GET request to http://10.129.0.11:5601/api/status fails: fail to execute the HTTP GET request: Get \"http://10.129.0.11:5601/api/status\": dial tcp 10.129.0.11:5601: connect: connection refused. Response: .", "stderr_lines": ["Exiting: error connecting to Kibana: fail to get the Kibana version: HTTP GET request to http://10.129.0.11:5601/api/status fails: fail to execute the HTTP GET request: Get \"http://10.129.0.11:5601/api/status\": dial tcp 10.129.0.11:5601: connect: connection refused. Response: ."], "stdout": "Overwriting ILM policy is disabled. Set `setup.ilm.overwrite: true` for enabling.\n\nIndex setup finished.\nLoading dashboards (Kibana must be running and reachable)", "stdout_lines": ["Overwriting ILM policy is disabled. Set `setup.ilm.overwrite: true` for enabling.", "", "Index setup finished.", "Loading dashboards (Kibana must be running and reachable)"]}
+
+PLAY RECAP *********************************************************************
+el-centos                  : ok=7    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+el-deb                     : ok=7    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+f-centos                   : ok=8    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+f-deb                      : ok=8    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+k-centos                   : ok=7    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+k-deb                      : ok=7    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+

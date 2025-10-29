@@ -1,0 +1,19 @@
+---
+- name: Install Logstash
+  become: true
+  yum:
+    name: "/tmp/logstash-{{ logstash_version }}-x86_64.rpm"
+    state: present
+  notify: restart Logstash
+- name: Update APT package manager repositories cache
+  become: true
+  yum:
+    update_cache: yes
+- name: Install Java using Ansible
+  become: yes
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+    - java-11-openjdk-devel.x86_64

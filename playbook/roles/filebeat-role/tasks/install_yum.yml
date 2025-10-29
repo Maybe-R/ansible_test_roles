@@ -1,0 +1,17 @@
+---
+- name: Install Filebeat
+  become: true
+  yum:
+    name: "/tmp/filebeat-{{ filebeat_version }}-x86_64.rpm"
+    state: present
+- name: install EPEL repo
+  become: true
+  yum:
+    name: epel-release
+    state: present
+- name: Install Nginx Web Server on RedHat Family
+  become: true
+  yum:
+    name: nginx
+    state: latest
+  notify: nginx systemd

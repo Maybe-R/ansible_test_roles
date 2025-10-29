@@ -1,0 +1,134 @@
+
+PLAY [Work with elasticsearch-role] ********************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [el-centos]
+
+TASK [elastic : Fail if unsupported system detected] ***************************
+skipping: [el-centos]
+
+TASK [elastic : include_tasks] *************************************************
+included: /home/lerekler/Learning/gitProjects/ansible_03/ansible_role/roles/elastic/tasks/download_yum.yml for el-centos
+
+TASK [elastic : Download Elasticsearch's rpm] **********************************
+ok: [el-centos -> localhost]
+
+TASK [elastic : Copy Elasticsearch to managed node] ****************************
+ok: [el-centos]
+
+TASK [elastic : include_tasks] *************************************************
+included: /home/lerekler/Learning/gitProjects/ansible_03/ansible_role/roles/elastic/tasks/install_yum.yml for el-centos
+
+TASK [elastic : Install Elasticsearch] *****************************************
+ok: [el-centos]
+
+TASK [elastic : Configure Elasticsearch] ***************************************
+ok: [el-centos]
+
+PLAY [Work with kibana-role] ***************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [k-centos]
+
+TASK [kibana : Fail if unsupported system detected] ****************************
+skipping: [k-centos]
+
+TASK [kibana : include_tasks] **************************************************
+included: /home/lerekler/Learning/gitProjects/ansible_03/ansible_role/roles/kibana/tasks/download_yum.yml for k-centos
+
+TASK [kibana : Download Kibana's rpm] ******************************************
+ok: [k-centos -> localhost]
+
+TASK [kibana : Copy Kibana to managed node] ************************************
+ok: [k-centos]
+
+TASK [kibana : include_tasks] **************************************************
+included: /home/lerekler/Learning/gitProjects/ansible_03/ansible_role/roles/kibana/tasks/install_yum.yml for k-centos
+
+TASK [kibana : Install Kibana] *************************************************
+ok: [k-centos]
+
+TASK [kibana : Configure Kibana] ***********************************************
+ok: [k-centos]
+
+PLAY [Work with logstash-role] *************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [el-centos]
+
+TASK [logstash : Fail if unsupported system detected] **************************
+skipping: [el-centos]
+
+TASK [logstash : include_tasks] ************************************************
+included: /home/lerekler/Learning/gitProjects/ansible_03/ansible_role/roles/logstash/tasks/download_yum.yml for el-centos
+
+TASK [logstash : Download Logstash's rpm] **************************************
+ok: [el-centos -> localhost]
+
+TASK [logstash : Copy Logstash to managed node] ********************************
+ok: [el-centos]
+
+TASK [logstash : include_tasks] ************************************************
+included: /home/lerekler/Learning/gitProjects/ansible_03/ansible_role/roles/logstash/tasks/install_yum.yml for el-centos
+
+TASK [logstash : Install Logstash] *********************************************
+ok: [el-centos]
+
+TASK [logstash : Update APT package manager repositories cache] ****************
+ok: [el-centos]
+
+TASK [logstash : Install Java using Ansible] ***********************************
+ok: [el-centos]
+
+TASK [logstash : Configure log4j2] *********************************************
+ok: [el-centos]
+
+TASK [logstash : Configure jvm] ************************************************
+ok: [el-centos]
+
+TASK [logstash : Configure Logstash] *******************************************
+ok: [el-centos]
+
+TASK [logstash : Configure with yml Logstash] **********************************
+ok: [el-centos]
+
+PLAY [Work with filebeat-role] *************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [f-centos]
+
+TASK [filebeat : Fail if unsupported system detected] **************************
+skipping: [f-centos]
+
+TASK [filebeat : include_tasks] ************************************************
+included: /home/lerekler/Learning/gitProjects/ansible_03/ansible_role/roles/filebeat/tasks/download_yum.yml for f-centos
+
+TASK [filebeat : Download Filebeat's rpm] **************************************
+ok: [f-centos -> localhost]
+
+TASK [filebeat : Copy Filebeat to managed node] ********************************
+ok: [f-centos]
+
+TASK [filebeat : include_tasks] ************************************************
+included: /home/lerekler/Learning/gitProjects/ansible_03/ansible_role/roles/filebeat/tasks/install_yum.yml for f-centos
+
+TASK [filebeat : Install Filebeat] *********************************************
+ok: [f-centos]
+
+TASK [filebeat : install EPEL repo] ********************************************
+ok: [f-centos]
+
+TASK [filebeat : Install Nginx Web Server on RedHat Family] ********************
+ok: [f-centos]
+
+TASK [filebeat : Configure Filebeat] *******************************************
+ok: [f-centos]
+
+TASK [filebeat : Set filebeat systemwork] **************************************
+changed: [f-centos]
+
+PLAY RECAP *********************************************************************
+el-centos                  : ok=19   changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+f-centos                   : ok=10   changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+k-centos                   : ok=7    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+
