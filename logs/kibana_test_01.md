@@ -57,11 +57,11 @@ INFO     Sanity checks: 'podman'
 PLAY [Destroy] *****************************************************************
 
 TASK [Destroy molecule instance(s)] ********************************************
-changed: [localhost] => (item={'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/centos:7', 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']})
+changed: [localhost] => (item={'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest', 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']})
 changed: [localhost] => (item={'command': 'sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest', 'name': 'instance-4', 'pre_build_image': True, 'provisioner': None, 'published_ports': ['0.0.0.0:5004:5004/udp', '0.0.0.0:5004:5004/tcp']})
 
 TASK [Wait for instance(s) deletion to complete] *******************************
-changed: [localhost] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '230230946595.137650', 'results_file': '/home/lerekler/.ansible_async/230230946595.137650', 'changed': True, 'failed': False, 'item': {'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/centos:7', 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']}, 'ansible_loop_var': 'item'})
+changed: [localhost] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '230230946595.137650', 'results_file': '/home/lerekler/.ansible_async/230230946595.137650', 'changed': True, 'failed': False, 'item': {'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest', 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']}, 'ansible_loop_var': 'item'})
 changed: [localhost] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '832915047973.137677', 'results_file': '/home/lerekler/.ansible_async/832915047973.137677', 'changed': True, 'failed': False, 'item': {'command': 'sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest', 'name': 'instance-4', 'pre_build_image': True, 'provisioner': None, 'published_ports': ['0.0.0.0:5004:5004/udp', '0.0.0.0:5004:5004/tcp']}, 'ansible_loop_var': 'item'})
 
 PLAY RECAP *********************************************************************
@@ -75,35 +75,35 @@ INFO     Running default > create
 PLAY [Create] ******************************************************************
 
 TASK [Log into a container registry] *******************************************
-skipping: [localhost] => (item={'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/centos:7', 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']})
+skipping: [localhost] => (item={'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest', 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']})
 skipping: [localhost] => (item={'command': 'sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest', 'name': 'instance-4', 'pre_build_image': True, 'provisioner': None, 'published_ports': ['0.0.0.0:5004:5004/udp', '0.0.0.0:5004:5004/tcp']})
 
 TASK [Check presence of custom Dockerfiles] ************************************
-ok: [localhost] => (item={'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/centos:7', 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']})
+ok: [localhost] => (item={'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest', 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']})
 ok: [localhost] => (item={'command': 'sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest', 'name': 'instance-4', 'pre_build_image': True, 'provisioner': None, 'published_ports': ['0.0.0.0:5004:5004/udp', '0.0.0.0:5004:5004/tcp']})
 
 TASK [Create Dockerfiles from image names] *************************************
-skipping: [localhost] => (item={'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/centos:7', 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']})
+skipping: [localhost] => (item={'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest, 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']})
 skipping: [localhost] => (item={'command': 'sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest', 'name': 'instance-4', 'pre_build_image': True, 'provisioner': None, 'published_ports': ['0.0.0.0:5004:5004/udp', '0.0.0.0:5004:5004/tcp']})
 
 TASK [Discover local Podman images] ********************************************
-ok: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'item': {'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/centos:7', 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']}, 'ansible_loop_var': 'item', 'i': 0, 'ansible_index_var': 'i'})
+ok: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'item': {'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest', 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']}, 'ansible_loop_var': 'item', 'i': 0, 'ansible_index_var': 'i'})
 ok: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'item': {'command': 'sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest', 'name': 'instance-4', 'pre_build_image': True, 'provisioner': None, 'published_ports': ['0.0.0.0:5004:5004/udp', '0.0.0.0:5004:5004/tcp']}, 'ansible_loop_var': 'item', 'i': 1, 'ansible_index_var': 'i'})
 
 TASK [Build an Ansible compatible image] ***************************************
-skipping: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'item': {'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/centos:7', 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']}, 'ansible_loop_var': 'item', 'i': 0, 'ansible_index_var': 'i'})
+skipping: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'item': {'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest', 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']}, 'ansible_loop_var': 'item', 'i': 0, 'ansible_index_var': 'i'})
 skipping: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'item': {'command': 'sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest', 'name': 'instance-4', 'pre_build_image': True, 'provisioner': None, 'published_ports': ['0.0.0.0:5004:5004/udp', '0.0.0.0:5004:5004/tcp']}, 'ansible_loop_var': 'item', 'i': 1, 'ansible_index_var': 'i'})
 
 TASK [Determine the CMD directives] ********************************************
-ok: [localhost] => (item={'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/centos:7', 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']})
+ok: [localhost] => (item={'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest', 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']})
 ok: [localhost] => (item={'command': 'sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest', 'name': 'instance-4', 'pre_build_image': True, 'provisioner': None, 'published_ports': ['0.0.0.0:5004:5004/udp', '0.0.0.0:5004:5004/tcp']})
 
 TASK [Create molecule instance(s)] *********************************************
-changed: [localhost] => (item={'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/centos:7', 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']})
+changed: [localhost] => (item={'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest', 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']})
 changed: [localhost] => (item={'command': 'sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest', 'name': 'instance-4', 'pre_build_image': True, 'provisioner': None, 'published_ports': ['0.0.0.0:5004:5004/udp', '0.0.0.0:5004:5004/tcp']})
 
 TASK [Wait for instance(s) creation to complete] *******************************
-changed: [localhost] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '143963795058.138036', 'results_file': '/home/lerekler/.ansible_async/143963795058.138036', 'changed': True, 'failed': False, 'item': {'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/centos:7', 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']}, 'ansible_loop_var': 'item'})
+changed: [localhost] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '143963795058.138036', 'results_file': '/home/lerekler/.ansible_async/143963795058.138036', 'changed': True, 'failed': False, 'item': {'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest', 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']}, 'ansible_loop_var': 'item'})
 changed: [localhost] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '104570373014.138064', 'results_file': '/home/lerekler/.ansible_async/104570373014.138064', 'changed': True, 'failed': False, 'item': {'command': 'sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest', 'name': 'instance-4', 'pre_build_image': True, 'provisioner': None, 'published_ports': ['0.0.0.0:5004:5004/udp', '0.0.0.0:5004:5004/tcp']}, 'ansible_loop_var': 'item'})
 
 PLAY RECAP *********************************************************************
@@ -164,9 +164,6 @@ changed: [instance-3]
 TASK [kibana-role : Configure Kibana] ******************************************
 skipping: [instance-3]
 changed: [instance-4]
-
-RUNNING HANDLER [kibana-role : restart Kibana Centos] **************************
-changed: [instance-3]
 
 RUNNING HANDLER [kibana-role : restart Kibana Deb] *****************************
 changed: [instance-4]
@@ -263,14 +260,14 @@ INFO     Running default > destroy
 PLAY [Destroy] *****************************************************************
 
 TASK [Destroy molecule instance(s)] ********************************************
-changed: [localhost] => (item={'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/centos:7', 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']})
+changed: [localhost] => (item={'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest', 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']})
 changed: [localhost] => (item={'command': 'sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest', 'name': 'instance-4', 'pre_build_image': True, 'provisioner': None, 'published_ports': ['0.0.0.0:5004:5004/udp', '0.0.0.0:5004:5004/tcp']})
 
 TASK [Wait for instance(s) deletion to complete] *******************************
 FAILED - RETRYING: Wait for instance(s) deletion to complete (300 retries left).
 FAILED - RETRYING: Wait for instance(s) deletion to complete (299 retries left).
 FAILED - RETRYING: Wait for instance(s) deletion to complete (298 retries left).
-changed: [localhost] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '421609792611.154375', 'results_file': '/home/lerekler/.ansible_async/421609792611.154375', 'changed': True, 'failed': False, 'item': {'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/centos:7', 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']}, 'ansible_loop_var': 'item'})
+changed: [localhost] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '421609792611.154375', 'results_file': '/home/lerekler/.ansible_async/421609792611.154375', 'changed': True, 'failed': False, 'item': {'command': '/sbin/init && sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest', 'name': 'instance-3', 'pre_build_image': True, 'privileged': True, 'published_ports': ['0.0.0.0:5005:5005/udp', '0.0.0.0:5005:5005/tcp']}, 'ansible_loop_var': 'item'})
 changed: [localhost] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '731188255607.154403', 'results_file': '/home/lerekler/.ansible_async/731188255607.154403', 'changed': True, 'failed': False, 'item': {'command': 'sleep 5000000', 'image': 'docker.io/pycontribs/ubuntu:latest', 'name': 'instance-4', 'pre_build_image': True, 'provisioner': None, 'published_ports': ['0.0.0.0:5004:5004/udp', '0.0.0.0:5004:5004/tcp']}, 'ansible_loop_var': 'item'})
 
 PLAY RECAP *********************************************************************
