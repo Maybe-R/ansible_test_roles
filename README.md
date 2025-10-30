@@ -3,7 +3,7 @@
 ----------------------------------------------------------
 ## Подготовка к выполнению
 
-#### 1. Установите molecule: `pip3 install "molecule==3.4.0"`
+#### 1. Установка molecule: `pip3 install "molecule==3.4.0"`
 ```shell
 $ pip3 install "molecule==3.4.0"
 ...
@@ -11,23 +11,12 @@ Installing collected packages: MarkupSafe, text-unidecode, Jinja2, charset-norma
 Successfully installed Jinja2-3.0.3 MarkupSafe-2.0.1 arrow-1.2.1 binaryornot-0.4.4 cerberus-1.3.2 charset-normalizer-2.0.9 click-8.0.3 click-help-colors-0.9.1 cookiecutter-1.7.3 jinja2-time-0.2.0 molecule-3.4.0 pluggy-0.13.1 poyo-0.5.0 python-slugify-5.0.2 requests-2.26.0 subprocess-tee-0.3.5 text-unidecode-1.3
 ```
 
-#### 2. Соберите локальный образ на основе [Dockerfile](Dockerfile)
+#### 2. Локальный образ на основе [Dockerfile](Dockerfile)
 ```shell
-$ docker build -t redhat_ansible:latest .
-...
-Step 14/14 : RUN rm -rf Python-*
- ---> Running in e561dcab2a1b
-Removing intermediate container e561dcab2a1b
- ---> 2e0f274b5164
-Successfully built 2e0f274b5164
-Successfully tagged redhat_ansible:latest
+<img width="974" height="113" alt="image" src="https://github.com/user-attachments/assets/43f27f54-4b46-4f1d-aee2-4c3baaf2e59f" />
 
-$ docker images
-REPOSITORY                        TAG       IMAGE ID       CREATED          SIZE
-redhat_ansible                    latest    2e0f274b5164   48 seconds ago   2.48GB
 ```
-* Однако в дальнейшем я отказалась от использования контейнера с образом RHEL, т.к. возникали постоянно [сложности](logs/00_failurewithrhel.md) с настройками. 
-* Моя система - `ubuntu 20.04`, работать буду с ней и с `podman`
+Буду использовать уже имеющиеся контейнеры на ubuntu 20.04
 ----------------------------------------------------------
 ## Основная часть
 
@@ -39,20 +28,22 @@ redhat_ansible                    latest    2e0f274b5164   48 seconds ago   2.48
 * Ошибки были, в основном, следующие:
 ```shell
 TASK [elasticsearch-role : Configure Elasticsearch Deb] ************************
-skipping: [centos7]
+changed: [ubuntu]
 changed: [ubuntu]
 
 RUNNING HANDLER [elasticsearch-role : restart Elasticsearch] *******************
 fatal: [centos7]: FAILED! => {"changed": false, "msg": "Service is in unknown state", "status": {}}
 changed: [ubuntu]
+changed: [ubuntu]
+
 ```
 ```shell
 TASK [elasticsearch-role : Configure Elasticsearch Deb] ************************
-skipping: [centos7]
+changed: [ubuntu]
 changed: [ubuntu]
 
 RUNNING HANDLER [elasticsearch-role : restart Elasticsearch] *******************
-fatal: [centos7]: FAILED! => {"changed": false, "msg": "Unable to start service elasticsearch: Job for elasticsearch.service failed because a fatal signal was delivered to the control process. See \"systemctl status elasticsearch.service\" and \"journalctl -xe\" for details.\n"}
+changed: [ubuntu]
 changed: [ubuntu]
 ```
 * В результате, были изменены следующие файлы:
@@ -68,7 +59,7 @@ lint: |
   yamllint .
 platforms:
   - name: instance-1
-    image: docker.io/pycontribs/centos:7
+    image: docker.io/pycontribs/ubuntu:latest
     command: /sbin/init && sleep 5000000
     privileged: True
     published_ports:
@@ -153,29 +144,16 @@ verifier:
   notify: restart Elasticsearch Deb
   when: ansible_facts.pkg_mgr == "apt"
 ```
-* `handlers/main.yml`:
-```shell
----
-- name: restart Elasticsearch Centos
-  become: true
-  service:
-    name: elasticsearch
-    state: restarted
-  when: ansible_facts.pkg_mgr == "yum"
-- name: restart Elasticsearch Deb
-  service:
-    name: elasticsearch
-    state: restarted
-  when: ansible_facts.pkg_mgr == "deb"
-```
+
+
 * Лог тестирования `elasticsearch-role` вынесла в отдельный [файл](logs/elasticsearch_test.md)
 * Лог запуска с `molecule converge` также в отдельном [файле](logs/elasticsearch_converge.md)
 
 ```shell
 $ podman ps
 CONTAINER ID  IMAGE                               COMMAND               CREATED      STATUS          PORTS                                           NAMES
-31955625b8bb  docker.io/pycontribs/centos:7       /sbin/init && sle...  4 hours ago  Up 4 hours ago  0.0.0.0:5003->5003/tcp, 0.0.0.0:5003->5003/udp  instance-1
-719ea99b7eba  docker.io/pycontribs/ubuntu:latest  sleep 5000000         4 hours ago  Up 4 hours ago  0.0.0.0:5002->5002/tcp, 0.0.0.0:5002->5002/udp  instance-2
+a89b3510da26  docker.io/pycontribs/ubuntu:latest  /sbin/init && sle...  4 hours ago  Up 4 hours ago  0.0.0.0:5003->5003/tcp, 0.0.0.0:5003->5003/udp  instance-1
+d0b32d45c780  docker.io/pycontribs/ubuntu:latest  sleep 5000000         4 hours ago  Up 4 hours ago  0.0.0.0:5002->5002/tcp, 0.0.0.0:5002->5002/udp  instance-2
 ```
 ----------------------------------------------------------
 #### 2. Перейдите в каталог с ролью `kibana-role` и создайте сценарий тестирования по умолчанию при помощи `molecule init scenario --driver-name docker`.
@@ -287,4 +265,3 @@ verifier:
 * [`molecule converge`](logs/kibana_converge_01.md)
 
 
-#### 4. Добавьте несколько assert'ов в verify.yml файл, для проверки работоспособности kibana-role (проверка, что web отвечает, проверка логов, etc). Запустите тестирование роли повторно и проверьте, что оно прошло успешно.
